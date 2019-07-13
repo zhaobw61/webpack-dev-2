@@ -21,15 +21,12 @@ module.exports = {
             }
         ]
     },
-    // 1)源码映射:会单独生成一个sourcemap文件 
-    // 出错了的话会标识当前的列和行
-    devtool:'source-map',
-    // 2)不会产生单独的文件  但是可以显示行和列
-    // devtool:'eval-source-map',
-    // 3)  不会产生列 是一个单独的映射文件
-    // devtool:'cheap-module-source-map',
-    // 4) 不会产生文件 集成在打包文件中，不会产生列
-    devtool:'cheap-module-eval-source-map',
+    watch:true, //事实打包文件
+    watchOptions:{ //监控的选项
+        poll:1000, // 一秒更新的次数
+        aggreateTimeout: 500, // 防抖  500毫秒内打包一次
+        ignored:/node_modules/ // 不需要进行监控
+    },
     output:{
         // [name] home other
         filename:'[name].js',
