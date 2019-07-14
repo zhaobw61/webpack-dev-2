@@ -1,8 +1,5 @@
 let path = require('path');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
-let CleanWebpackPlugin = require('clean-webpack-plugin');
-let CopyWebpackPlugin =require('copy-webpack-plugin');
-let webpack = require('webpack');
 module.exports = {
     mode:'development',
     entry:{
@@ -24,6 +21,12 @@ module.exports = {
             }
         ]
     },
+    watch:true, //事实打包文件
+    watchOptions:{ //监控的选项
+        poll:1000, // 一秒更新的次数
+        aggreateTimeout: 500, // 防抖  500毫秒内打包一次
+        ignored:/node_modules/ // 不需要进行监控
+    },
     output:{
         // [name] home other
         filename:'[name].js',
@@ -33,11 +36,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             templata:'./index.html',
             filename:'index.html',
-        }),
-        new CleanWebpackPlugin('./dist'), // 删除文件夹
-        new CopyWebpackPlugin([  // 把doc文件拷贝到dist下
-            {from:'doc',to:'./'}
-        ]),
-        new webpack.BannerPlugin('make 2019 bu jw') // 在每个文件里加入说明 用于版权说明
+        })
     ]
 }
