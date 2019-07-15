@@ -11,6 +11,10 @@ module.exports = {
     module:{
         rules:[
             {
+                test:/\.css$/,
+                use:['style-loader','css-loader']
+            },
+            {
                 test:/.\js$/,
                 use:{
                     loader:'babel-loader',
@@ -23,6 +27,14 @@ module.exports = {
                 exclude:/node_modules/
             }
         ]
+    },
+    resolve:{ // 解析 第三方包 
+        modules:[path.resolve('node_modules')], //只在当前的node_modules文件下查找包
+        extensions:['.js','.css','.json'], // 扩展名 可以省略扩展名。感觉没啥用
+        mainFields:['style','main'], // 在访问包的时候，主要选择的name
+        alias:{ // 别名 vue
+            boostrap:'path'
+        }
     },
     devSerner:{ // 处理跨域
         // proxy:{
