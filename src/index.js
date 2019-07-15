@@ -1,9 +1,19 @@
-console.log('home');
+let xhr = new XMLHttpRequest();
 
-class A{
-    constructor(){
-        console.lo('出错了');
-    }
+xhr.open("GET", "/api/user", true);
+
+xhr.onload = function () {
+    console.log(xhr.response);
 }
 
-let obj = new A();
+xhr.send();
+
+// console.log('home');
+
+// class A{
+//     constructor(){
+//         console.lo('出错了');
+//     }
+// }
+
+// let obj = new A();
