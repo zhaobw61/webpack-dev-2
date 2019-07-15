@@ -62,6 +62,9 @@ module.exports = {
         path:path.resolve(__dirname,'dist')
     },
     plugins:[
+        new webpack.DefinePlugin({ // 定义变量
+            DEV:"'dev'"
+        }),
         new HtmlWebpackPlugin({
             templata:'./index.html',
             filename:'index.html',
